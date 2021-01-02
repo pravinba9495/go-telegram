@@ -5,13 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
-
-	"github.com/pravinba9495/go-telegram/models"
 )
 
 // SendMessage sends a text message
-func SendMessage(botToken string, chatId string, text string) (*models.Message, error) {
-	body := &models.SendMessageRequestBody{
+func SendMessage(botToken string, chatId string, text string) (*Message, error) {
+	body := &SendMessageRequestBody{
 		ChatID: chatId,
 		Text:   text,
 	}
@@ -26,9 +24,9 @@ func SendMessage(botToken string, chatId string, text string) (*models.Message, 
 	if response.StatusCode != http.StatusOK {
 		return nil, errors.New("sendMessage request returned: " + response.Status)
 	}
-	var result *models.SendMessageResponseBody
+	var result *SendMessageResponseBody
 	if err := json.NewDecoder(response.Body).Decode(&result); err != nil {
-		return nil, errors.New("could not convert response to *models.GetUpdatesBody")
+		return nil, errors.New("could not convert response to *GetUpdatesBody")
 	}
 	return result.Result, nil
 }

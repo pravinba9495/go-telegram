@@ -1,4 +1,4 @@
-package models
+package telegram
 
 // GetUpdatesResponseBody defines the structure of the body returned by the getUpdates method of the telegram API
 type GetUpdatesResponseBody struct {

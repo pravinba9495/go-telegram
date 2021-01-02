@@ -1,4 +1,4 @@
-package models
+package telegram
 
 // Message defines the structure of message object
 type Message struct {

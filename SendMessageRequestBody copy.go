@@ -1,4 +1,4 @@
-package models
+package telegram
 
 // SendMessageRequestBody defines the request body structure required for the `sendMessage` method for the telegram API
 type SendMessageRequestBody struct {

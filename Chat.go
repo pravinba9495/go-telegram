@@ -1,4 +1,4 @@
-package models
+package telegram
 
 // Chat defines the structure of chat object
 type Chat struct {

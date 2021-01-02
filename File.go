@@ -1,4 +1,4 @@
-package models
+package telegram
 
 // File defines the structure of file object
 type File struct {

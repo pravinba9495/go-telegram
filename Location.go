@@ -1,4 +1,4 @@
-package models
+package telegram
 
 // Location defines the structure of location object
 type Location struct {
