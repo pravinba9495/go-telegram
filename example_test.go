@@ -18,7 +18,7 @@ func Example_setWebhook() {
 }
 
 // Get updates
-func Exampple_getUpdates() {
+func Example_getUpdates() {
 	// Bot token generated from BotFather
 	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
 
