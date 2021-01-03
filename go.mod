@@ -1,3 +1,3 @@
-module github.com/pravinba9495/go-telegram.v0.0.1
+module github.com/pravinba9495/go-telegram
 
 go 1.16
