@@ -12,9 +12,5 @@ Send and receive telegram messages with ease, witten in Go.
 ## Documentation
 The complete documentation is available at https://pkg.go.dev/github.com/pravinba9495/go-telegram
 
-## Example
-
-```go
-```
 ## License
 MIT
