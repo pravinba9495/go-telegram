@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-// SendMessage sends a text message
+// SendMessage sends a text message to a recipient
 func SendMessage(botToken string, chatId string, text string) (*Message, error) {
 	body := &SendMessageRequestBody{
 		ChatID: chatId,
@@ -26,7 +26,7 @@ func SendMessage(botToken string, chatId string, text string) (*Message, error) 
 	}
 	var result *SendMessageResponseBody
 	if err := json.NewDecoder(response.Body).Decode(&result); err != nil {
-		return nil, errors.New("could not convert response to *GetUpdatesBody")
+		return nil, errors.New("could not convert response to *SendMessageResponseBody")
 	}
 	return result.Result, nil
 }
