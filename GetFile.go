@@ -6,9 +6,9 @@ import (
 	"net/http"
 )
 
-// GetFile retrieves basic info about a file and prepares it for downloading
-func GetFile(botToken string, fileId string) (io.ReadCloser, error) {
-	response, err := http.Get("https://api.telegram.org/" + botToken + "/getFile?file_id=" + fileId)
+// GetFile retrieves the file by filePath from telegram API
+func GetFile(botToken string, filePath string) (io.ReadCloser, error) {
+	response, err := http.Get("https://api.telegram.org/file/" + botToken + "/" + filePath)
 	if err != nil {
 		return nil, err
 	}
