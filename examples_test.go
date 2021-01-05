@@ -30,7 +30,6 @@ func ExampleGetUpdates() {
 	for _, update := range allUpdates {
 		log.Println("[RECEIVED MESSAGE] " + update.Message.Text)
 	}
-	// Output: [RECEIVED MESSAGE] Hi, I am a message from the telegram bot.
 }
 
 func ExampleSendMessage() {
@@ -48,7 +47,6 @@ func ExampleSendMessage() {
 		}
 		log.Println("[SENT] " + result.Text)
 	}
-	// Output: [SENT] Hi, I am a message from the telegram bot.
 }
 
 func ExampleSetWebhook() {
