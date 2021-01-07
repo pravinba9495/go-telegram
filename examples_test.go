@@ -2,7 +2,6 @@ package telegram
 
 import (
 	"fmt"
-	"log"
 	"os"
 )
 
@@ -14,39 +13,42 @@ func ExampleGetUpdates() {
 	var allUpdates []Update
 	offset := 0
 	for {
-		log.Println("Using offset: " + fmt.Sprint(offset))
+		fmt.Println("Using offset: " + fmt.Sprint(offset))
 		updates, err := GetUpdates(botToken, fmt.Sprint(offset))
 		if err != nil {
-			log.Println(err)
-			break
+			panic(err)
 		}
 		if len(*updates) > 0 {
 			allUpdates = append(allUpdates, *updates...)
 			offset = int(allUpdates[len(*updates)-1].UpdateID) + 1
+			if len(*updates) < 100 {
+				break
+			}
 		} else {
 			break
 		}
 	}
-	for _, update := range allUpdates {
-		log.Println("[RECEIVED MESSAGE] " + update.Message.Text)
-	}
+	fmt.Println("Done !")
+	// Output: Using offset: 0
+	// Done !
 }
 
 func ExampleSendMessage() {
 	// Bot token generated from BotFather
 	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
 	message := "Hi, I am a message from the telegram bot."
-	chatId := "12345"
+	chatId := os.Getenv("TELEGRAM_CHAT_ID")
 
 	if chatId != "" {
 		// Sending a text message
 		result, err := SendMessage(botToken, chatId, message)
 		if err != nil {
-			log.Println(err)
+			fmt.Println(err)
 			return
 		}
-		log.Println("[SENT] " + result.Text)
+		fmt.Println("[SENT] " + result.Text)
 	}
+	// Output: [SENT] Hi, I am a message from the telegram bot.
 }
 
 func ExampleSetWebhook() {
@@ -55,6 +57,8 @@ func ExampleSetWebhook() {
 
 	// Setting webhook
 	if err := SetWebhook(botToken, ""); err != nil {
-		log.Println(err)
+		panic(err)
 	}
+	fmt.Println("Done !")
+	// Output: Done !
 }
