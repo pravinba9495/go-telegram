@@ -62,3 +62,16 @@ func ExampleSetWebhook() {
 	fmt.Println("Done !")
 	// Output: Done !
 }
+
+func ExampleSendMedia() {
+	// Bot token generated from BotFather
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+	chatId := os.Getenv("TELEGRAM_CHAT_ID")
+
+	_, err := SendMedia(botToken, "/Users/praveen/Downloads/tulip_field.jpeg", chatId)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Done !")
+	// Output: Done !
+}
