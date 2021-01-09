@@ -14,7 +14,7 @@ import (
 )
 
 // SendMedia sends a media file to a recipient
-func SendMedia(botToken string, path string, chatId string) (*Message, error) {
+func SendMedia(botToken string, chatId string, path string) (*Message, error) {
 	mtype, err := mimetype.DetectFile(path)
 	if err != nil {
 		return nil, err

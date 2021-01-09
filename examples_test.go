@@ -70,7 +70,7 @@ func ExampleSendMedia() {
 	chatId := os.Getenv("TELEGRAM_CHAT_ID")
 	path := os.Getenv("TELEGRAM_FILE_PATH")
 
-	_, err := SendMedia(botToken, path, chatId)
+	_, err := SendMedia(botToken, chatId, path)
 	if err != nil {
 		panic(err)
 	}
