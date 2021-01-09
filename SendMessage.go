@@ -13,7 +13,7 @@ func SendMessage(botToken string, chatId string, text string) (*Message, error) 
 		ChatID: chatId,
 		Text:   text,
 	}
-	b, err := json.Marshal(body)
+	b, err := json.Marshal(&body)
 	if err != nil {
 		return nil, err
 	}
