@@ -27,5 +27,5 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_FILE_PATH: ${{ secrets.TELEGRAM_FILE_PATH }}
       run: |
-        wget https://raw.githubusercontent.com/aheeva/sample-files/main/image/jpg/tulip_field.jpg
+        wget https://homepages.cae.wisc.edu/~ece533/images/airplane.png
         go test -v ./...
