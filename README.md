@@ -9,6 +9,72 @@ Send and receive telegram messages with ease, written in Go.
 - Send and receive media files
 - Update webhook URL
 
+## Example
+
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/pravinba9495/go-telegram"
+)
+
+func main() {
+	// Bot token generated from BotFather
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+
+	text := "Hi, I am a message from the telegram bot."
+	chatId := os.Getenv("TELEGRAM_CHAT_ID")
+	path := os.Getenv("TELEGRAM_FILE_PATH")
+
+	// Retrieving all updates until the server returns empty response
+	var allUpdates []telegram.Update
+	offset := 0
+	for {
+		fmt.Println("Using offset: " + fmt.Sprint(offset))
+		updates, err := telegram.GetUpdates(botToken, fmt.Sprint(offset))
+		if err != nil {
+			panic(err)
+		}
+		if len(*updates) > 0 {
+			allUpdates = append(allUpdates, *updates...)
+			offset = int(allUpdates[len(*updates)-1].UpdateID) + 1
+			if len(*updates) < 100 {
+				break
+			}
+		} else {
+			break
+		}
+	}
+
+	for _, update := range allUpdates {
+		fmt.Println("[RECEIVED] " + update.Message.Text)
+	}
+
+	result, err := telegram.SendMessage(botToken, chatId, text)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("[SENT] " + result.Text)
+
+	message, err := telegram.SendMedia(botToken, chatId, path)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(message.Text)
+
+	// Setting webhook
+	if err := telegram.SetWebhook(botToken, "https://example.com/webhook"); err != nil {
+		panic(err)
+	}
+}
+
+```
+
 ## Documentation
 The complete documentation is available at https://pkg.go.dev/github.com/pravinba9495/go-telegram
 
