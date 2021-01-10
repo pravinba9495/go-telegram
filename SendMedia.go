@@ -39,7 +39,8 @@ func SendMedia(botToken string, chatId string, path string) (*Message, error) {
 		endPoint = "sendVideo"
 		fileType = "video"
 	} else {
-		return nil, errors.New("unsupported file type")
+		endPoint = "sendDocument"
+		fileType = "document"
 	}
 
 	values := map[string]io.Reader{
