@@ -53,7 +53,7 @@ func main() {
 		fmt.Println("[RECEIVED] " + update.Message.Text)
 	}
 
-    // Sending a text message
+        // Sending a text message
 	result, err := telegram.SendMessage(botToken, chatId, text)
 	if err != nil {
 		fmt.Println(err)
@@ -61,7 +61,7 @@ func main() {
 	}
 	fmt.Println("[SENT] " + result.Text)
 
-    // Sending a media attachment
+        // Sending a media attachment
 	message, err := telegram.SendMedia(botToken, chatId, path)
 	if err != nil {
 		panic(err)
