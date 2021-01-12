@@ -7,7 +7,7 @@ import (
 )
 
 // GetUpdates retrieves incoming updates using long polling
-func GetUpdates(botToken string, offset string) (*[]Update, error) {
+func GetUpdates(botToken string, offset string) (*Updates, error) {
 	response, err := http.Get("https://api.telegram.org/" + botToken + "/getUpdates?&allowed_updates=[\"message\"]&offset=" + offset)
 	if err != nil {
 		return nil, err
