@@ -32,16 +32,17 @@ func main() {
 	// Retrieving all updates until the server returns empty response
 	var allUpdates []telegram.Update
 	offset := 0
+	
 	for {
 		fmt.Println("Using offset: " + fmt.Sprint(offset))
-		updates, err := telegram.GetUpdates(botToken, fmt.Sprint(offset))
+		updates, err := GetUpdates(botToken, fmt.Sprint(offset))
 		if err != nil {
 			panic(err)
 		}
-		if len(*updates) > 0 {
-			allUpdates = append(allUpdates, *updates...)
-			offset = int(allUpdates[len(*updates)-1].UpdateID) + 1
-			if len(*updates) < 100 {
+		if len(**updates) > 0 {
+			allUpdates = append(allUpdates, **updates...)
+			offset = int(allUpdates[len(**updates)-1].UpdateID) + 1
+			if len(**updates) < 100 {
 				break
 			}
 		} else {

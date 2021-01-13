@@ -18,10 +18,10 @@ func ExampleGetUpdates() {
 		if err != nil {
 			panic(err)
 		}
-		if len(*updates) > 0 {
-			allUpdates = append(allUpdates, *updates...)
-			offset = int(allUpdates[len(*updates)-1].UpdateID) + 1
-			if len(*updates) < 100 {
+		if len(**updates) > 0 {
+			allUpdates = append(allUpdates, **updates...)
+			offset = int(allUpdates[len(**updates)-1].UpdateID) + 1
+			if len(**updates) < 100 {
 				break
 			}
 		} else {
