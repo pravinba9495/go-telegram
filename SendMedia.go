@@ -75,7 +75,7 @@ func SendMedia(botToken string, chatId string, path string) (*Message, error) {
 	if response.StatusCode != http.StatusOK {
 		return nil, errors.New(endPoint + " request returned: " + response.Status)
 	}
-	var result *SendMessageResponseBody
+	var result *ResponseBody
 	if err := json.NewDecoder(response.Body).Decode(&result); err != nil {
 		return nil, errors.New("could not convert response to *SendMessageResponseBody")
 	}
