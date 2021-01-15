@@ -5,17 +5,16 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"log"
 	"mime/multipart"
 	"net/http"
 	"os"
 	"strings"
-
-	"github.com/gabriel-vasile/mimetype"
 )
 
 // SendMedia sends a media file to a recipient
 func SendMedia(botToken string, chatId string, path string) (*Message, error) {
-	mtype, err := mimetype.DetectFile(path)
+	mtype, err := GetFileContentType(path)
 	if err != nil {
 		return nil, err
 	}
@@ -29,13 +28,13 @@ func SendMedia(botToken string, chatId string, path string) (*Message, error) {
 	endPoint := ""
 	fileType := ""
 
-	if strings.Contains(mtype.String(), "image") {
+	if strings.Contains(mtype, "image") {
 		endPoint = "sendPhoto"
 		fileType = "photo"
-	} else if strings.Contains(mtype.String(), "audio") {
+	} else if strings.Contains(mtype, "audio") {
 		endPoint = "sendAudio"
 		fileType = "audio"
-	} else if strings.Contains(mtype.String(), "video") {
+	} else if strings.Contains(mtype, "video") {
 		endPoint = "sendVideo"
 		fileType = "video"
 	} else {
@@ -73,6 +72,11 @@ func SendMedia(botToken string, chatId string, path string) (*Message, error) {
 		return nil, err
 	}
 	if response.StatusCode != http.StatusOK {
+		j, err := json.Marshal(response.Body)
+		if err != nil {
+			return nil, err
+		}
+		log.Println(string(j))
 		return nil, errors.New(endPoint + " request returned: " + response.Status)
 	}
 	var result *ResponseBody
