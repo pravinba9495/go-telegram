@@ -5,11 +5,10 @@ import (
 	"testing"
 )
 
-func TestSendMedia(t *testing.T) {
+func TestGetFileInfo(t *testing.T) {
 	type args struct {
 		botToken string
-		chatId   string
-		path     string
+		fileId   string
 	}
 	tests := []struct {
 		name string
@@ -17,20 +16,19 @@ func TestSendMedia(t *testing.T) {
 		want error
 	}{
 		{
-			name: "TestSendMedia",
+			name: "TestGetFileInfo",
 			args: args{
 				botToken: os.Getenv("TELEGRAM_BOT_TOKEN"),
-				chatId:   os.Getenv("TELEGRAM_CHAT_ID"),
-				path:     os.Getenv("TELEGRAM_FILE_PATH"),
+				fileId:   os.Getenv("TELEGRAM_FILE_ID"),
 			},
 			want: nil,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			_, err := SendMedia(tt.args.botToken, tt.args.chatId, tt.args.path)
+			_, err := GetFileInfo(tt.args.botToken, tt.args.fileId)
 			if err != tt.want {
-				t.Errorf("SendMedia() = %v, want %v", err, tt.want)
+				t.Errorf("GetFileInfo() = %v, want %v", err, tt.want)
 			}
 		})
 	}
