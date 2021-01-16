@@ -28,5 +28,5 @@ jobs:
         TELEGRAM_FILE_PATH: ${{ secrets.TELEGRAM_FILE_PATH }}
         TELEGRAM_FILE_ID: ${{ secrets.TELEGRAM_FILE_ID }}
       run: |
-        wget https://homepages.cae.wisc.edu/~ece533/images/airplane.png
+        wget https://www.w3.org/People/mimasa/test/imgformat/img/w3c_home.jpg
         go test -v ./...
