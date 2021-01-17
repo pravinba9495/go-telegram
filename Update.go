@@ -7,4 +7,4 @@ type Update struct {
 }
 
 // Updates defines an array of updates
-type Updates *[]Update
+type Updates []Update
