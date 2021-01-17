@@ -1,6 +1,7 @@
 package telegram
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -31,4 +32,16 @@ func TestSetWebhook(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleSetWebhook() {
+	// Bot token generated from BotFather
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+
+	// Setting webhook
+	if err := SetWebhook(botToken, ""); err != nil {
+		panic(err)
+	}
+	fmt.Println("Done !")
+	// Output: Done !
 }

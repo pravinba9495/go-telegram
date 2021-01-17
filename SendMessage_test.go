@@ -1,6 +1,7 @@
 package telegram
 
 import (
+	"fmt"
 	"os"
 	"reflect"
 	"testing"
@@ -43,4 +44,22 @@ func TestSendMessage(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleSendMessage() {
+	// Bot token generated from BotFather
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+	message := "Hi, I am a message from the telegram bot."
+	chatId := os.Getenv("TELEGRAM_CHAT_ID")
+
+	if chatId != "" {
+		// Sending a text message
+		result, err := SendMessage(botToken, chatId, message)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("[SENT] " + result.Text)
+	}
+	// Output: [SENT] Hi, I am a message from the telegram bot.
 }

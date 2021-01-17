@@ -1,6 +1,7 @@
 package telegram
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -32,4 +33,32 @@ func TestGetUpdates(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleGetUpdates() {
+	// Bot token generated from BotFather
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+
+	// Retrieving all updates until the server returns empty response
+	var allUpdates Updates
+	offset := 0
+	for {
+		fmt.Println("Using offset: " + fmt.Sprint(offset))
+		updates, err := GetUpdates(botToken, fmt.Sprint(offset))
+		if err != nil {
+			panic(err)
+		}
+		if len(*updates) > 0 {
+			allUpdates = append(allUpdates, *updates...)
+			offset = int(allUpdates[len(*updates)-1].UpdateID) + 1
+			if len(*updates) < 100 {
+				break
+			}
+		} else {
+			break
+		}
+	}
+	fmt.Println("Done !")
+	// Output: Using offset: 0
+	// Done !
 }

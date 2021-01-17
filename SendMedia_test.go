@@ -1,6 +1,7 @@
 package telegram
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -34,4 +35,19 @@ func TestSendMedia(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleSendMedia() {
+	// Bot token generated from BotFather
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+
+	chatId := os.Getenv("TELEGRAM_CHAT_ID")
+	path := os.Getenv("TELEGRAM_FILE_PATH")
+
+	_, err := SendMedia(botToken, chatId, path)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Done !")
+	// Output: Done !
 }
