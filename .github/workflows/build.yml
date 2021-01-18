@@ -27,6 +27,8 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_FILE_PATH: ${{ secrets.TELEGRAM_FILE_PATH }}
         TELEGRAM_FILE_ID: ${{ secrets.TELEGRAM_FILE_ID }}
+        TELEGRAM_FILE_URL: ${{ secrets.TELEGRAM_FILE_URL }}
+        TELEGRAM_FILE_TYPE: ${{ secrets.TELEGRAM_FILE_TYPE }}
       run: |
-        wget https://www.w3.org/People/mimasa/test/imgformat/img/w3c_home.jpg
+        wget $TELEGRAM_FILE_URL
         go test -v ./...

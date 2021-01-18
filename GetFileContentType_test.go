@@ -21,7 +21,7 @@ func TestGetFileContentType(t *testing.T) {
 			args: args{
 				path: os.Getenv("TELEGRAM_FILE_PATH"),
 			},
-			want:    "image/jpeg",
+			want:    os.Getenv("TELEGRAM_FILE_TYPE"),
 			wantErr: false,
 		},
 	}
@@ -46,5 +46,4 @@ func ExampleGetFileContentType() {
 		panic(err)
 	}
 	fmt.Println(mtype)
-	// Output: image/jpeg
 }
