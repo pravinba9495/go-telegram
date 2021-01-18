@@ -1,6 +1,7 @@
 package telegram
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -32,4 +33,14 @@ func TestGetFileInfo(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleGetFileInfo() {
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+	fileId := os.Getenv("TELEGRAM_FILE_ID")
+	file, err := GetFileInfo(botToken, fileId)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(file.FilePath)
 }

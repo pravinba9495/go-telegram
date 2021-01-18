@@ -1,6 +1,7 @@
 package telegram
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -36,4 +37,14 @@ func TestGetFileContentType(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleGetFileContentType() {
+	path := os.Getenv("TELEGRAM_FILE_PATH")
+	mtype, err := GetFileContentType(path)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(mtype)
+	// Output: image/jpeg
 }
