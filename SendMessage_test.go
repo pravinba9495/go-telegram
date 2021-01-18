@@ -56,8 +56,7 @@ func ExampleSendMessage() {
 		// Sending a text message
 		result, err := SendMessage(botToken, chatId, message)
 		if err != nil {
-			fmt.Println(err)
-			return
+			panic(err)
 		}
 		fmt.Println("[SENT] " + result.Text)
 	}
