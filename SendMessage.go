@@ -26,7 +26,7 @@ func SendMessage(botToken string, chatId string, text string) (*Message, error) 
 	}
 	var result *ResponseBody
 	if err := json.NewDecoder(response.Body).Decode(&result); err != nil {
-		return nil, errors.New("could not convert response to *SendMessageResponseBody")
+		return nil, errors.New("could not convert response to *ResponseBody")
 	}
 	return result.Result, nil
 }
