@@ -3,6 +3,7 @@ package telegram
 import (
 	"fmt"
 	"os"
+	"reflect"
 	"testing"
 )
 
@@ -12,9 +13,10 @@ func TestGetFileInfo(t *testing.T) {
 		fileId   string
 	}
 	tests := []struct {
-		name string
-		args args
-		want error
+		name    string
+		args    args
+		want    string
+		wantErr bool
 	}{
 		{
 			name: "TestGetFileInfo",
@@ -22,14 +24,19 @@ func TestGetFileInfo(t *testing.T) {
 				botToken: os.Getenv("TELEGRAM_BOT_TOKEN"),
 				fileId:   os.Getenv("TELEGRAM_FILE_ID"),
 			},
-			want: nil,
+			want:    os.Getenv("TELEGRAM_FILE_ID"),
+			wantErr: false,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			_, err := GetFileInfo(tt.args.botToken, tt.args.fileId)
-			if err != tt.want {
-				t.Errorf("GetFileInfo() = %v, want %v", err, tt.want)
+			got, err := GetFileInfo(tt.args.botToken, tt.args.fileId)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("GetFileInfo() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got.FileID, tt.want) {
+				t.Errorf("GetFileInfo() = %v, want %v", got.FileID, tt.want)
 			}
 		})
 	}
