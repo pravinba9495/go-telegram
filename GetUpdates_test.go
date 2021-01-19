@@ -58,7 +58,4 @@ func ExampleGetUpdates() {
 			break
 		}
 	}
-	fmt.Println("Done !")
-	// Output: Using offset: 0
-	// Done !
 }

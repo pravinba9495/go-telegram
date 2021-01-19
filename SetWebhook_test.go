@@ -1,7 +1,6 @@
 package telegram
 
 import (
-	"fmt"
 	"os"
 	"testing"
 )
@@ -42,6 +41,4 @@ func ExampleSetWebhook() {
 	if err := SetWebhook(botToken, ""); err != nil {
 		panic(err)
 	}
-	fmt.Println("Done !")
-	// Output: Done !
 }

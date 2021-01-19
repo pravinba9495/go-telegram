@@ -49,5 +49,5 @@ func ExampleGetFileInfo() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(file.FilePath)
+	fmt.Println(file)
 }
