@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
-	"log"
 	"mime/multipart"
 	"net/http"
 	"os"
@@ -72,11 +71,6 @@ func SendMedia(botToken string, chatId string, path string) (*Message, error) {
 		return nil, err
 	}
 	if response.StatusCode != http.StatusOK {
-		j, err := json.Marshal(response.Body)
-		if err != nil {
-			return nil, err
-		}
-		log.Println(string(j))
 		return nil, errors.New(endPoint + " request returned: " + response.Status)
 	}
 	var result *ResponseBody
