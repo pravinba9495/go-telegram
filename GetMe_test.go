@@ -1,6 +1,7 @@
 package telegram
 
 import (
+	"fmt"
 	"os"
 	"reflect"
 	"testing"
@@ -39,4 +40,13 @@ func TestGetMe(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleGetMe() {
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+	user, err := GetMe(botToken)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(user)
 }
