@@ -13,7 +13,7 @@ func SetWebhook(botToken string, webhookURL string) error {
 		return err
 	}
 	if response.StatusCode != http.StatusOK {
-		return errors.New("sendMessage request returned: " + response.Status)
+		return errors.New("setWebhook request returned: " + response.Status)
 	}
 	return nil
 }
